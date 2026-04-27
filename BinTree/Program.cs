@@ -12,19 +12,20 @@ namespace BinTree
         static void Main()
         {
             BinarySearchTree<int> tree = new BinarySearchTree<int>();
+
             tree.Insert(5);
             tree.Insert(3);
             tree.Insert(7);
-            tree.Insert(85);
-            tree.Insert(97);
-            tree.Insert(1);
-            tree.Insert(2);
-            tree.Insert(3312);
-            tree.Insert(0);
+            tree.Insert(8);
 
             tree.InOrder();
-            tree.Remove(3);
+
+            tree.Insert(9);
+
+            Console.WriteLine();
+            
             tree.InOrder();
+            
         }
     }
 }
