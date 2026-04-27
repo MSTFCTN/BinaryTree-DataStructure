@@ -73,7 +73,6 @@ namespace BinTree
             {
                 for (Node<T> current = Head; current != null; current = current.Next)
                 {
-                    // Jenerik tiplerin verilerini güvenli şekilde karşılaştırır
                     if (EqualityComparer<T>.Default.Equals(current.Data, data))
                     {
                         if (object.ReferenceEquals(current, Head))
@@ -85,7 +84,7 @@ namespace BinTree
                             }
                             else
                             {
-                                Tail = null; // Liste boşaldı
+                                Tail = null;
                             }
                         }
                         else if (object.ReferenceEquals(current, Tail))
@@ -97,7 +96,7 @@ namespace BinTree
                             }
                             else
                             {
-                                Head = null; // Liste boşaldı
+                                Head = null;
                             }
                         }
                         else
@@ -106,11 +105,10 @@ namespace BinTree
                             current.Next.Prev = current.Prev;
                         }
 
-                        return true; // İlk bulunan veri başarıyla silindi
+                        return true;
                     }
                 }
-
-                return false; // Veri listede bulunamadı
+                return false;
             }
 
             public void PrintList()
@@ -148,7 +146,7 @@ namespace BinTree
                 if (head == null) throw new InvalidOperationException("Queue is empty.");
                 T data = head.Data;
                 head = head.Next;
-                if (head == null) { tail = null; } // Queue is now empty 
+                if (head == null) { tail = null; }
                 return data;
             }
 
@@ -194,7 +192,6 @@ namespace BinTree
         }
 
         public class BinarySearchTree<T> where T : IComparable<T>
-        //Ağacınız int, string, double veya DateTime gibi C#'ın yerleşik yapılarıyla kusursuz çalışır, çünkü bu yapıların hepsi Microsoft tarafından IComparable olarak tasarlanmıştır.
         {
             TreeNode<T> Root = null;
 
@@ -241,12 +238,10 @@ namespace BinTree
                     {
                         if(GetHeight(node.Left.Left) >= GetHeight(node.Left.Right))
                         {
-                            // Sağ Rotasyon
                             node = RotateRight(node);
                         }
                         else
                         {
-                            // Sol-Sağ Rotasyon
                             node.Left = RotateLeft(node.Left);
                             node = RotateRight(node);
                         }
@@ -255,12 +250,10 @@ namespace BinTree
                     {
                         if(GetHeight(node.Right.Right) >= GetHeight(node.Right.Left))
                         {
-                            // Sol Rotasyon
                             node = RotateLeft(node);
                         }
                         else
                         {
-                            // Sağ-Sol Rotasyon
                             node.Right = RotateRight(node.Right);
                             node = RotateLeft(node);
                         }
@@ -364,7 +357,7 @@ namespace BinTree
                 }
             }
 
-            public void Remove(T data)//silinecek düğümün sol çocuuğunun en sağ çocuğunu veya sağ çocuğunun en sol çocuğu ile değiştirilmesi işlemi yapılır
+            public void Remove(T data)
             {
                 if (Root == null) throw new InvalidOperationException("Tree is empty.");
                 if (data == null) throw new ArgumentNullException(nameof(data));
@@ -421,10 +414,6 @@ namespace BinTree
            
             public void PreOrder()
             {
-                // ==========================================
-                // PRE-ORDER (KÖK - SOL - SAĞ)
-                // ==========================================
-
                 Console.Write("Pre-Order  : ");
                 PreOrderRecursive(Root);
                 Console.WriteLine();
@@ -434,19 +423,15 @@ namespace BinTree
             {
                 if (node != null)
                 {
-                    Console.Write(node.Data + " "); // Önce Kök
-                    Console.WriteLine("Level: " + node.Height); // Düğümün seviyesini yazdır
-                    PreOrderRecursive(node.Left);   // Sonra Sol
-                    PreOrderRecursive(node.Right);  // En Son Sağ
+                    Console.Write(node.Data + " "); 
+                    Console.WriteLine("Level: " + node.Height); 
+                    PreOrderRecursive(node.Left);  
+                    PreOrderRecursive(node.Right); 
                 }
             }
 
             public void InOrder()
             {
-                // ==========================================
-                // IN-ORDER (SOL - KÖK - SAĞ)
-                // ==========================================
-
                 Console.Write("In-Order   : ");
                 InOrderRecursive(Root);
                 Console.WriteLine();
@@ -456,19 +441,15 @@ namespace BinTree
             {
                 if (node != null)
                 {
-                    InOrderRecursive(node.Left);    // Önce Sol
-                    Console.Write(node.Data + " "); // Sonra Kök
-                    Console.WriteLine("Level: " + node.Height); // Düğümün seviyesini yazdır
-                    InOrderRecursive(node.Right);   // En Son Sağ
+                    InOrderRecursive(node.Left);    
+                    Console.Write(node.Data + " ");
+                    Console.WriteLine("Level: " + node.Height);
+                    InOrderRecursive(node.Right);   
                 }
             }
 
             public void PostOrder()
             {
-                // ==========================================
-                // POST-ORDER (SOL - SAĞ - KÖK)
-                // ==========================================
-
                 Console.Write("Post-Order : ");
                 PostOrderRecursive(Root);
                 Console.WriteLine();
@@ -478,10 +459,10 @@ namespace BinTree
             {
                 if (node != null)
                 {
-                    PostOrderRecursive(node.Left);  // Önce Sol
-                    PostOrderRecursive(node.Right); // Sonra Sağ
-                    Console.Write(node.Data + " "); // En Son Kök
-                    Console.WriteLine("Level: " + node.Height); // Düğümün seviyesini yazdır
+                    PostOrderRecursive(node.Left); 
+                    PostOrderRecursive(node.Right); 
+                    Console.Write(node.Data + " "); 
+                    Console.WriteLine("Level: " + node.Height);
                 }
             }
 
